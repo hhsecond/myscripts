@@ -3,9 +3,9 @@ import datetime
 import random
 import time
 import pygame
+from os import path
 
-
-def hey_notify(*args, sleep_fact):
+def hey_notify(sleep_fact = 0, *args):
     n = notify2.Notification(*args)
     n.show()
     pygame.mixer.music.play()
@@ -14,7 +14,7 @@ def hey_notify(*args, sleep_fact):
 
 notify2.init('foo')
 pygame.mixer.init()
-pygame.mixer.music.load("/home/hhsecond/notify_me/monotone.mp3")
+pygame.mixer.music.load(path.abspath(path.dirname(__file__))+ "/monotone.mp3")
 mul_fact = 60 * 60
 hours = 0
 things_to_do = {'Advanced algorithims and Datastructures': 1,
@@ -25,12 +25,12 @@ things_to_do = {'Advanced algorithims and Datastructures': 1,
                 }
 while things_to_do:
     random_hour = random.choice([1, 2, 1.5, 2.5])
-    hey_notify('Get Back To Work!!!!', random_hour)
+    hey_notify(random_hour, 'Get Back To Work!!!!')
     current_time = datetime.datetime.now()
     right_now_item = random.choice(list(things_to_do.keys()))
     hours = things_to_do[right_now_item]
     end_time = current_time + datetime.timedelta(hours=hours)
-    hey_notify(right_now_item, 'Do it till ' + end_time.strftime('%r'), hours)
+    hey_notify(hours, right_now_item, 'Do it till ' + end_time.strftime('%r'))
     del things_to_do[right_now_item]
 
 hey_notify('Take breaks in between and work the shit until you die')
