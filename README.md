@@ -1,2 +1,2 @@
 # myscripts
-Small scritps that automates my life !!!
+Small scritps those automate my life !!!
